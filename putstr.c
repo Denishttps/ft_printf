@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	putstr(char *str)
+size_t	putstr(char *str)
 {
 	size_t	len;
 

@@ -31,7 +31,6 @@ size_t	write_format(char format, va_list *args)
 	return (0);
 }
 
-
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
@@ -41,14 +40,14 @@ int	ft_printf(const char *str, ...)
 	va_start(args, str);
 	i = 0;
 	count = 0;
-    while (str[i])
-    {
+	while (str[i])
+	{
 		if (str[i] == '%')
 			count += write_format(str[++i], &args);
 		else
 			count += printchar(str[i]);
 		i++;
-    }
-    va_end(args);
-    return (count);
+	}
+	va_end(args);
+	return (count);
 }
