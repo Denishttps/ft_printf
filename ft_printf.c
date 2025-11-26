@@ -6,52 +6,49 @@
 /*   By: dbobrov <dbobrov@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:49:53 by dbobrov           #+#    #+#             */
-/*   Updated: 2025/11/24 16:36:25 by dbobrov          ###   ########.fr       */
+/*   Updated: 2025/11/25 21:14:00 by dbobrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
 
-
-static int	is_in_set(char c, const char *set)
+size_t	write_format(char format, va_list *args)
 {
-	while (*set)
-	{
-		if (c == *set)
-			return (1);
-		set++;
-	}
+	if (format == 'c')
+		return (printchar(va_arg(*args, int)));
+	else if (format == '%')
+		return (printchar('%'));
+	else if (format == 's')
+		return (putstr(va_arg(*args, char *)));
+	else if (format == 'p')
+		return (putptr(va_arg(*args, void *)));
+	else if (format == 'd' || format == 'i')
+		return (putnbr(va_arg(*args, int)));
+	else if (format == 'u')
+		return (putuint(va_arg(*args, unsigned int)));
+	else if (format == 'x' || format == 'X')
+		return (puthex(va_arg(*args, unsigned int), format));
 	return (0);
 }
 
-char *strs_format(char *str, va_list args, size_t lstr)
-{
-	size_t	i;
-	char	*new_str;
-	
-	
-}
 
-int ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
-    va_list	args;
-    size_t	i;
-    size_t	args_c;
-	char	**splited_str;
-	char	*new_str;
-    
-	args_c = 0;
-    i = 0;
+	va_list	args;
+	size_t	count;
+	size_t	i;
+
+	va_start(args, str);
+	i = 0;
+	count = 0;
     while (str[i])
     {
-        if (str[i] == '%' && is_in_set(str[i + 1], "cspdiuxX"))
-            args_c++;
-        i++;
+		if (str[i] == '%')
+			count += write_format(str[++i], &args);
+		else
+			count += printchar(str[i]);
+		i++;
     }
-	va_start(args, args_c);
-	new_str = strs_format(str, args, ft_strlen(str));
-	va_end(args);
-	return (0);
+    va_end(args);
+    return (count);
 }
-
