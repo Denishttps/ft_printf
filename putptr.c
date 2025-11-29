@@ -16,8 +16,10 @@ size_t	putptr(void *ptr)
 {
 	size_t	len;
 
+	if (!ptr)
+		return (putstr("(nil)"));
 	len = 0;
 	len += write(1, "0x", 2);
-	len += puthex((unsigned long)ptr, 'x');
+	len += puthex((uintptr_t)ptr, 'x');
 	return (len);
 }

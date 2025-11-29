@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-size_t	puthex(unsigned long n, int letter_case)
+size_t	puthex(uintptr_t n, int letter_case)
 {
 	size_t		len;
 	const char	*hex;
