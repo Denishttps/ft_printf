@@ -8,6 +8,8 @@
     },
     "files.associations": {
       "*.dbclient-js": "javascript",
-      "libft.h": "c"
+      "libft.h": "c",
+      "*.gitignore": "c",
+      "stdarg.h": "c"
     }
 }
