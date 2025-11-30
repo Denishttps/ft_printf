@@ -6,7 +6,7 @@
 /*   By: dbobrov <dbobrov@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:09:49 by dbobrov           #+#    #+#             */
-/*   Updated: 2025/11/15 17:13:09 by dbobrov          ###   ########.fr       */
+/*   Updated: 2025/11/30 20:18:26 by dbobrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	unsigned char	*d;
 	unsigned char	*s;
 
+	if (!dst && !src)
+		return (NULL);
 	s = (unsigned char *)src;
 	d = (unsigned char *)dst;
 	while (n > 0)

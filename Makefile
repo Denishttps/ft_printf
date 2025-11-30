@@ -3,24 +3,24 @@ FLAGS := --Wall --Wextra --Werror
 RM := rm -f
 
 LIBFT := libft
-LIBFT_A := $(LIBFT)/libft.a
+LIBFT_ARCHIVE := $(LIBFT)/libft.a
 NAME := libftprintf.a
 
-SRCS := ft_printf.c printchar.c puthex.c putnbr.c putptr.c putstr.c putuint.c
+SRCS := ft_printf.c printchar.c puthex.c putptr.c putnbr.c putuint.c putstr.c
 
 OBJS := $(SRCS:%.c=%.o)
 
 
-%.o: %.c $(LIBFT_A)
+%.o: %.c $(LIBFT_ARCHIVE)
 	gcc -c $< -o $@
 
 all: $(OBJS)
 	cd $(LIBFT) && make
-	cp $(LIBFT_A) $(NAME)
+	cp $(LIBFT_ARCHIVE) $(NAME)
 	ar rcs $(NAME) $^ 
 	
 clean: 
-	d $(LIBFT) && make cleanc
+	cd $(LIBFT) && make clean
 	$(RM) $(OBJS)
 
 fclean: clean
